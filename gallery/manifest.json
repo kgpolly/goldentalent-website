@@ -1,0 +1,15 @@
+{
+  "name": "GoldenTalent Gallery",
+  "short_name": "Gallery",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0071e3",
+  "description": "GoldenTalent产品画廊",
+  "icons": [
+    {
+      "src": "/assets/icons/favicon.png",
+      "type": "image/png"
+    }
+  ]
+}

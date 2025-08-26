@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1a2a6c">
+    <meta name="description" content="goldentalent 产品画廊展示">
+    <title>GoldenTalent Product</title>
+    <link rel="manifest" href="./manifest.json">
+    <link rel="apple-touch-icon" href="./favicon.png">
+    <link rel="shortcut icon" href="./favicon.png">
+    <link rel="stylesheet" type="text/css" href="./css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="./css/lightbox.min.css">
+    <link rel="stylesheet" href="./css/root.css">
+</head>
+<body>
+
+<header>
+    <div class="logo-img">
+        <img src="img/GoldenTalent101.png" alt="" style="width: 10%">
+    </div>
+    <div class="logo">
+        产品一览
+    </div>
+    <!--<div class="logo-img">
+        <img src="assets/img/GoldenTalent101.png" alt="GoldenTalent Logo" style="width: 20%">
+    </div>-->
+    <!--<div class="subtitle">探索世界之美</div>-->
+</header>
+
+<div class="container" id="container">
+    <div class="gallery" id="gallery">
+        <!-- bootstrap.js加载 -->
+    </div>
+
+    <div class="footer">
+        <footer>
+            <p>
+                Copyright © 2025. Goldentalent ALL RIGHTS RESERVED. <a href="https://beian.miit.gov.cn/"> 沪ICP备2025119322号-1</a>
+            </p>
+        </footer>
+    </div>
+</div>
+
+<!-- Lightbox结构 -->
+<div class="lightbox" id="lightbox">
+    <div class="close-btn" onclick="closeLightbox()">
+        <i class="fas fa-times"></i>
+    </div>
+    <div class="nav-btn prev-btn" onclick="changeSlide(-1)">
+        <i class="fas fa-chevron-left"></i>
+    </div>
+    <div class="nav-btn next-btn" onclick="changeSlide(1)">
+        <i class="fas fa-chevron-right"></i>
+    </div>
+    <div class="lightbox-content">
+        <div class="lightbox-image-container">
+            <img id="lightbox-img" src="" alt="">
+        </div>
+        <div class="lightbox-info">
+            <h2 class="lightbox-title" id="lightbox-title"></h2>
+            <div class="lightbox-description" id="lightbox-description"></div>
+        </div>
+    </div>
+</div>
+<script src="./js/bootstrap.js"></script>
+<script src="./js/lightbox.js"></script>
+<script src="./js/pwa.js"></script>
+</body>
+</html>
