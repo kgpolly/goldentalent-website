@@ -120,7 +120,7 @@ h1 {
 
 .gallery-item {
     position: relative;
-    border-radius: 12px;
+    #border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 3px 9px var(--sk-glyph-gray-tertiary);
     cursor: pointer;
