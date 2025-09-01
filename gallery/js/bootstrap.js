@@ -10,6 +10,8 @@ function generateGridItems() {
     const gridContainer = document.getElementById('gallery');
     gridContainer.innerHTML = '';
     const count = 19;
+    const productKeys = ['ylswtdxt', 'wxfsq', 'wxjsq', 'bhjp', 'jdbhjp', 'uvjp', 'yymz',
+    'td', 'etd', 'njjp', 'ld4spcsx', 'bmxdb', 'dphlfwq', 'swslxt', 'txwtp', 'ymsmy', 'vrzhjp', 'fjgjp', 'ycxfhmz'];
     const srcs = [
         './img/ylswtdxt.avif', './img/wxfsq.avif', './img/wxjsq.avif',
         './img/bhjp.avif', './img/jdbhjp.avif', './img/uvjp.avif',
@@ -30,12 +32,16 @@ function generateGridItems() {
         "一次性防护面罩"
     ];
 
-    for (let i = 0; i < count; i++) {
+    let imageUrl;
+    for (let i = 0; i < productKeys.length; i++) {
         const gridItem = document.createElement('div');
         gridItem.className = 'gallery-item';
-        gridItem.addEventListener('click', function(e) {openLightbox(i)});
+        gridItem.addEventListener('click', function (e) {
+            openLightbox(productKeys[i])
+        });
+        imageUrl = './img/' + productKeys[i] + '.avif';
         gridItem.innerHTML = `
-                    <img src="${srcs[i]}" alt="${captions[i]}">
+                    <img src="${imageUrl}" alt="${captions[i]}">
                     <div class="caption">${captions[i]}</div>
                     <div class="long-description-indicator">
                         更多细节 <i class="fas fa fa-angle-right"></i>

@@ -252,22 +252,94 @@ footer {
     align-items: center;
     justify-content: center;
     padding: 30px;
+    overflow: hidden;
+    flex-direction: column;
 }
 
-.lightbox-image-container img {
+/*.lightbox-image-container img {
     max-width: 100%;
     max-height: 100%;
     object-fit: contain;
     border-radius: 8px;
-    /*box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);*/
+    !*box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);*!
+}*/
+
+.lightbox-slider {
+    display: flex;
+    transition: transform var(--transition-duration) ease;
+    height: 100%;
+}
+
+.lightbox-slide {
+    min-width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.lightbox-slide img {
+    max-width: 100%;
+    max-height: 90vh;
+    object-fit: contain;
 }
 
 .lightbox-info {
-    flex: 1;
+    /*flex: 1;*/
     padding: 40px;
     overflow-y: auto;
     height: 100%;
     position: relative;
+}
+
+/* 缩略图容器 - 放置在大图下方 */
+.lightbox-thumbnails-container {
+    padding: 5px;
+    background: var(--sk-fill-gray-quaternary);
+    border-top: 1px solid var(--sk-fill-gray-quaternary);
+    border-radius: 8px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.lightbox-thumbnails {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    overflow-x: auto;
+    padding: 5px 10px;
+}
+
+.lightbox-thumb {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 8px;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+}
+
+.lightbox-thumb.active {
+    opacity: 1;
+    border: 2px solid var(--apple-blue);
+    transform: scale(1.05);
+}
+
+.lightbox-thumb:hover {
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+.lightbox-counter {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: var(--sk-glyph-gray-tertiary);
+    color: white;
+    padding: 15px 12px;
+    border-radius: 20px;
+    font-size: 0.9rem;
 }
 
 .lightbox-title {
@@ -349,8 +421,6 @@ footer {
 }
 
 .nav-btn {
-    display: none;
-    /*display: flex;*/
     position: absolute;
     top: 50%;
     /*transform: translateY(-50%);*/
@@ -363,6 +433,7 @@ footer {
     height: 55px;
     border-radius: 50%;
     -webkit-border-radius: 50%;
+    display: flex;
     align-items: center;
     justify-content: center;
     transition: all 0.3s ease;
@@ -402,23 +473,6 @@ footer {
 }
 
 /* 响应式设计 */
-/*@media (max-width: 1800px) {
-    .lightbox-content {
-        flex-direction: column;
-        height: 90vh;
-    }
-
-    .lightbox-image-container {
-        flex: 0 0 50%;
-        width: 100%;
-    }
-
-    .lightbox-info {
-        flex: 1;
-        padding: 25px;
-    }
-}*/
-
 @media (max-width: 1100px) {
     .lightbox-content {
         flex-direction: column;
@@ -433,6 +487,37 @@ footer {
     .lightbox-info {
         flex: 1;
         padding: 25px;
+    }
+}
+
+@media (max-width: 900px) {
+    .lightbox-content {
+        flex-direction: column;
+        height: 90vh;
+    }
+
+    .lightbox-image-container {
+        flex: 0 0 50%;
+        width: 100%;
+    }
+
+    .lightbox-info {
+        flex: 1;
+        padding: 25px;
+    }
+
+    .nav-btn {
+        display: none;
+    }
+
+    /* 移动端缩略图调整 */
+    .lightbox-thumbnails-container {
+        padding: 10px;
+    }
+
+    .lightbox-thumb {
+        width: 50px;
+        height: 50px;
     }
 }
 
@@ -461,15 +546,29 @@ footer {
     }
 
     .lightbox-title {
-        font-size: 1.8rem;
+        padding-top: 10px;
+        margin-top: 10px;
+        font-size: 1.5rem;
     }
 
     .lightbox-description {
         font-size: 1rem;
     }
+
+    /* 确保在手机上导航按钮也被隐藏 */
+    .nav-btn {
+        display: none;
+    }
+
+    /* 手机端缩略图调整 */
+    .lightbox-thumb {
+        width: 40px;
+        height: 40px;
+    }
+
 }
 
-@media (max-width: 480px) {
+@media (max-width: 600px) {
     h1 {
         font-size: 2rem;
     }
@@ -483,10 +582,99 @@ footer {
         height: 85vh;
     }
 
+    .lightbox-title {
+        padding-top: 10px;
+        margin-top: 10px;
+        font-size: 1.5rem;
+    }
+
     .lightbox-image-container {
         padding: 15px;
     }
+
+    .lightbox-thumbnails {
+        gap: 6px;
+    }
+
+    .lightbox-thumb {
+        width: 50px;
+        height: 50px;
+    }
+
+    .nav-btn {
+        display: none;
+    }
+
+    /* 手机端缩略图调整 */
+    .lightbox-thumb {
+        width: 40px;
+        height: 40px;
+    }
 }
+
+@media (min-width: 901px) {
+    .nav-btn {
+        display: flex;
+    }
+}
+
+/*兼容ipad*/
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+    /*.lightbox-content {
+        flex-direction: column;
+        height: 90vh;
+    }*/
+
+    /*.lightbox-image-container {
+        flex: 0 0 50%;
+        width: 100%;
+    }*/
+
+    /*.lightbox-info {
+        flex: 1;
+        padding: 25px;
+    }*/
+
+    .nav-btn {
+        display: none;
+    }
+
+    /* 移动端缩略图调整 */
+    /*.lightbox-thumbnails-container {
+        padding: 10px;
+    }*/
+
+    /*.lightbox-thumb {
+        width: 50px;
+        height: 50px;
+    }*/
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* 设备检测类 */
+.desktop-only {
+    display: block;
+}
+
+.mobile-only {
+    display: none;
+}
+
+@media (max-width: 1024px) {
+    .desktop-only {
+        display: none;
+    }
+
+    .mobile-only {
+        display: block;
+    }
+}
+
+
 
 /* 滚动条美化 */
 .lightbox-info::-webkit-scrollbar {
